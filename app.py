@@ -8,8 +8,8 @@ from io import BytesIO
 from tempfile import TemporaryDirectory
 import gunicorn
 
-with TemporaryDirectory() as tmp:
-    print(tmp)
+print("Server is running :)")
+print(".....................")
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 app = Flask(__name__)
@@ -33,9 +33,11 @@ def download_audio():
         except:
             pass
 
-        audio_name = new_file.split("\\")[-1]
+        faudio_name = new_file.split("\\")[-1]
         print(download_path)
-        print(audio_name)
+        print(faudio_name)
+        hpath, audio_name = os.path.split(faudio_name)
+        print("filename is : " + audio_name)
         file_bytes = b""
         with open(new_file, "rb") as f:
             file_bytes = f.read()
